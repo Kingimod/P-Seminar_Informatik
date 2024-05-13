@@ -1,7 +1,7 @@
 import shutil
 
 from flask import Flask
-from flask import render_template_string, redirect, request
+from flask import render_template_string, redirect, request, render_template
 import os
 import subprocess
 import socket
@@ -40,6 +40,8 @@ def root():
         </html>
     ''', current_path = os.getcwd(),
          file_list = subprocess.check_output('ls', shell=True, cwd= os.getcwd()).decode('utf8').split('\n',))
+
+
 
 @app.route('/back')
 def back():

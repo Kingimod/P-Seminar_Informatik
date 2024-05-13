@@ -2,97 +2,40 @@
 
 import shutil
 from flask import Flask
-from flask import render_template_string, redirect, request
+from flask import render_template_string, redirect, request, render_template
 
 import os
 import subprocess
 import socket
 
 messages = []
+home_templates = ['home.html', 'nav_bar.html']
+kal_templates = ['kalender.html','nav_bar.html']
+kontakte_templates = ['kontakte.html','nav_bar.html']
+datein_templates = ['kalender.html','nav_bar.html']
+forum_templates = ['forum_alt.html','nav_bar.html']
+forum_alt_templates = ['forum_alt.html','nav_bar.html']
 
 app = Flask(__name__)
 
-nav_bar = """
- <!DOCTYPE html>
-    <html>
-    <head>
-        <title>Nachhilfemanager</title>
-        <style>
-            nav ul {
-                list-style-type: none;
-                margin: 0;
-                padding: 0;
-                overflow: hidden;
-                background-color: #333;
-            }
-
-            nav li {
-                float: left;
-            }
-
-            nav li a {
-                display: block;
-                color: white;
-                text-align: center;
-                padding: 14px 16px;
-                text-decoration: none;
-            }
-            nav li a:hover {
-                background-color: #ddd;
-                color: black;
-            }
-        </style>
-    </head>
-    <body>
-        <h1>Nachhilfemanager 🏫</h1>
-        <nav>
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/kontakte">Kontakte</a></li>
-                <li><a href="/dateien">Dateien</a></li>
-                <li><a href="/forum">Forum</a></li>
-            </ul>
-        </nav>
-    </body>
-    </html>
-"""
-
 @app.route('/')
 def home():
-    return render_template_string(nav_bar)
+    return render_template(home_templates)
+
+
 
 @app.route('/kontakte')
 def kontakte():
-    return render_template_string(nav_bar + """
+    return render_template(kontakte_templates)
 
-    <h3>Lehrer</h3>
-
-<table>
-  <tr>
-    <th>Herr ... </th>
-    <th>Herr ... </th>
-    <th>Frau ... </th>
-
+@app.route('/terminkalender')
+def terminkalender():
     
-  </tr>
-  <tr>
-    <td>Deutsch </td>
-    <td>Mathematik </td>
-    <td>Französisch </td>
-   </tr>
-   <tr>
-     <td>Argumentieren </td>
-     <td>Stochastik </td>
-     <td>Passé Composé</td>
-   </tr>
-</table>
-    </html>
-    """)
-
+    return render_template(kal_templates)
 
 @app.route('/dateien')
 def root():
-    return render_template_string(nav_bar + '''
+    return render_template_string('''
         <html>
           <head>
             <h3>Lernmaterialien</h3>
@@ -122,44 +65,10 @@ def forum():
         message = request.form['message']
         messages.append(message)
 
-        return render_template_string(nav_bar + """
-        <h3> Forum </h3>
-        <form action="/forum" method="post">
-        <div align="left" style="width: px; height: 300px; overflow-y: auto; border: 1px solid #ccc;">
-         <div>
-          {% for message in messages %}
-           <p>&nbspAbsenderName: {{ message }}</p><br></br>
-        {% endfor %}
-          </div>
-         </div>
-         <p><label>Stelle eine Frage:</label></p>
-          <textarea id="message" name="message" rows="4" cols="50"></textarea>
-          <br>
-          <input type="submit" value="Senden ✉️">
-        </form>
-        </body>
-        </html>
-        """, message=message,
+        return render_template(forum_templates, message=message,
              messages=messages)
     else:
-        return render_template_string(nav_bar + """
-        <h3> Forum </h3>
-        <form action="/forum" method="post">
-        <div align="left" style="width: px; height: 300px; overflow-y: auto; border: 1px solid #ccc;">
-         <div>
-          {% for message in messages %}
-           <p>&nbspAbsenderName: {{ message }}</p><br></br>
-          {% endfor %}
-          </div>
-         </div>
-         <p><label>Stelle eine Frage:</label></p>
-          <textarea id="message" name="message" rows="4" cols="50"></textarea>
-          <br>
-          <input type="submit" value="Senden ✉️">
-        </form>
-        </body>
-        </html>
-        """)
+        return render_template(forum_alt_templates)
 
 
 @app.route('/cd')

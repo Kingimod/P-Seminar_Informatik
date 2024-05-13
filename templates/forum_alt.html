@@ -1,0 +1,16 @@
+<h3> Forum </h3>
+        <form action="/forum" method="post">
+        <div align="left" style="width: px; height: 300px; overflow-y: auto; border: 1px solid #ccc;">
+         <div>
+          {% for message in messages %}
+           <p>&nbspAbsenderName: {{ message }}</p><br></br>
+          {% endfor %}
+          </div>
+         </div>
+         <p><label>Stelle eine Frage:</label></p>
+          <textarea id="message" name="message" rows="4" cols="50"></textarea>
+          <br>
+          <input type="submit" value="Senden ✉️">
+        </form>
+        </body>
+        </html>
