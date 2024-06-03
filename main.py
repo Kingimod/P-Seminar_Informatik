@@ -13,8 +13,8 @@ home_templates = ['home.html', 'nav_bar.html']
 kal_templates = ['kalender.html','nav_bar.html']
 kontakte_templates = ['kontakte.html','nav_bar.html']
 datein_templates = ['kalender.html','nav_bar.html']
-forum_templates = ['forum_alt.html','nav_bar.html']
-forum_alt_templates = ['forum_alt.html','nav_bar.html']
+#forum_templates = ['forum_alt.html','nav_bar.html']
+#forum_alt_templates = ['forum_alt.html','nav_bar.html']
 
 app = Flask(__name__)
 
@@ -65,10 +65,10 @@ def forum():
         message = request.form['message']
         messages.append(message)
 
-        return render_template(forum_templates, message=message,
+        return render_template('forum.html', message=message,
              messages=messages)
     else:
-        return render_template(forum_alt_templates)
+        return render_template('forum.html')
 
 
 @app.route('/cd')
@@ -85,4 +85,4 @@ def view():
 # später zu socket server wechseln
 
 if __name__ == '__main__':
-    app.run(debug=True, port=3000)
+    app.run(debug=True, port=4000)

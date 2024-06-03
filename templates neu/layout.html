@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+  <head>
+    {% block head %}
+    <link rel="stylesheet" href="../static/styles/nav_bar_styles.css">
+    <title>{% block title %}{% endblock %} - My Webpage</title>
+    {% endblock %}
+  </head>
+  
+  <body>
+    <nav>{% block navbar %}{% endblock %}
+    <div id="nav_content">
+        <div class="logo">
+            <a href="#">Nachhilfemanager 🏫</a>
+          </div>
+          <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/kontakte">Kontakte</a></li>
+            <li><a href="/dateien">Lernmaterial</a></li>
+            <li><a href="/forum">Forum</a></li>
+            <li><a href="/terminkalender">Terminkalender</a></li>
+          </ul>
+    </div>
+    </nav>
+    <div id="content">{% block content %}{% endblock %}</div>
+   
+  </body>
+</html>
