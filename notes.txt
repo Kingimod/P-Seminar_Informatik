@@ -42,7 +42,12 @@ terminkalender html:
   </div>
 </body>
 
-
+Template Inheritance: 
+{% extends 'layout.html' %}
+{% block title %}test{% endblock %}
+<!--{% block nav_bar %}
+{{ super() }}
+{% endblock %}
 
 Todo:
 - Title für die Navbar Vorlage ändern

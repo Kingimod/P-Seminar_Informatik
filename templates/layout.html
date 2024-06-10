@@ -3,13 +3,13 @@
   <head>
     {% block head %}
     <link rel="stylesheet" href="../static/styles/nav_bar_styles.css">
-    <title>{% block title %}{% endblock %} - My Webpage</title>
+    <title>{% block title %}My Webpage{% endblock %}</title>
     {% endblock %}
   </head>
   
   <body>
-    <nav>{% block navbar %}{% endblock %}
-    <div id="nav_content">
+    <nav>{% block navbar %}
+    <div class="nav-content">
         <div class="logo">
             <a href="#">Nachhilfemanager 🏫</a>
           </div>
@@ -21,6 +21,16 @@
             <li><a href="/terminkalender">Terminkalender</a></li>
           </ul>
     </div>
+    <script>
+      let nav = document.querySelector("nav");
+        window.onscroll = function() {
+          if(document.documentElement.scrollTop > 20){
+            nav.classList.add("sticky");
+          }else {
+            nav.classList.remove("sticky");
+          }
+        }
+      </script>{% endblock %}
     </nav>
     <div id="content">{% block content %}{% endblock %}</div>
    

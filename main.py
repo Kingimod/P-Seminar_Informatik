@@ -9,29 +9,29 @@ import subprocess
 import socket
 
 messages = []
-home_templates = ['home.html', 'nav_bar.html']
-kal_templates = ['kalender.html','nav_bar.html']
-kontakte_templates = ['kontakte.html','nav_bar.html']
-datein_templates = ['kalender.html','nav_bar.html']
-#forum_templates = ['forum_alt.html','nav_bar.html']
-#forum_alt_templates = ['forum_alt.html','nav_bar.html']
+
 
 app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return render_template(home_templates)
+    return render_template('layout.html')
 
 
 
 @app.route('/kontakte')
 def kontakte():
-    return render_template(kontakte_templates)
+    return render_template('kontakte.html')
 
-@app.route('/terminkalender')
-def terminkalender():
+#@app.route('/terminkalender')
+#def terminkalender():
     
-    return render_template(kal_templates)
+    #return render_template(kal_templates)
+
+@app.route('/test')
+def test():
+    
+    return render_template('test.html')
 
 @app.route('/dateien')
 def root():

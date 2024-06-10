@@ -1,3 +1,10 @@
+{% extends "layout.html" %}
+{% block title %}Forum{% endblock %}
+
+{% block navbar %}
+    {{ super() }}
+{% endblock %}
+{% block content %}
 <h3> Forum </h3>
         <form action="/forum" method="post">
         <div align="left" style="width: px; height: 300px; overflow-y: auto; border: 1px solid #ccc;">
@@ -14,4 +21,4 @@
         </form>
         </body>
         </html>
-    
+{% endblock %}
