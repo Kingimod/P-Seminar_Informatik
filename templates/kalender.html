@@ -1,4 +1,10 @@
+{% extends "layout.html" %}
+{% block title %}Home{% endblock %}
 
+{% block navbar %}
+    {{ super() }}
+{% endblock %}
+{% block content %}
 <html lang="en">
 
 <head>
@@ -83,3 +89,4 @@ let nav = document.querySelector("nav");
 <h1>test</h1>
 
 </html>
+{% endblock %}

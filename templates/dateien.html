@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block title %}Lernmaterialien{% endblock %}
+
+{% block navbar %}
+    {{ super() }}
+{% endblock %}
+{% block content %}
+    <h3>Lernmaterialien</h3>
+    <!--<section class="home"></section>-->
+    <div class="text">
+     <p align = "center"> <Strong> Aktuelles Verzeichnis:</Strong> {{show_current_path}}</p>
+     <ul>
+     {% for item in file_list %}
+        {% if "." not in item%}
+         <li><strong><a href="/cd?path={{current_path + '/' + item}}">{{item}}</a></strong> </li>
+        {% elif '.txt' or  '.json' or '.html' in item %}
+        <li><strong><a href = "/view?file={{current_path + '/' + item +'.txt'}}">{{item}}</a></strong></li>
+        {% else %}
+        <li>{{item}}</li>
+        {%endif%}
+     {%endfor%}
+     </ul>
+    </div>
+  {% endblock %}

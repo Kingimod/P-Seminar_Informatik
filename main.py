@@ -23,10 +23,9 @@ def home():
 def kontakte():
     return render_template('kontakte.html')
 
-#@app.route('/terminkalender')
-#def terminkalender():
-    
-    #return render_template(kal_templates)
+@app.route('/terminkalender')
+def terminkalender():
+    return render_template('kalender.html')
 
 @app.route('/test')
 def test():
@@ -35,26 +34,7 @@ def test():
 
 @app.route('/dateien')
 def root():
-    return render_template_string('''
-        <html>
-          <head>
-            <h3>Lernmaterialien</h3>
-          </head>
-          <body>
-           <p align = "center"> <Strong> Aktuelles Verzeichnis:</Strong> {{show_current_path}}</p>
-           <ul>
-           {% for item in file_list %}
-              {% if "." not in item%}
-               <li><strong><a href="/cd?path={{current_path + '/' + item}}">{{item}}</a></strong> </li>
-              {% elif '.txt' or  '.json' or '.html' in item %}
-              <li><strong><a href = "/view?file={{current_path + '/' + item +'.txt'}}">{{item}}</a></strong></li>
-              {% else %}
-              <li>{{item}}</li>
-              {%endif%}
-           {%endfor%}
-          </body>
-        </html>
-    ''', show_current_path = os.getcwd().replace('/Users/jonas/PycharmProjects/Nachhilfe Manager', '/'),
+    return render_template('dateien.html', show_current_path = os.getcwd().replace('/Users/jonas/PycharmProjects/Nachhilfe Manager', '/'),
         current_path = os.getcwd(),
 
          file_list = subprocess.check_output('ls', shell=True, cwd= os.getcwd()).decode('utf8').split('\n',))

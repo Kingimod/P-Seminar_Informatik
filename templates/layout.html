@@ -6,8 +6,8 @@
     <title>{% block title %}My Webpage{% endblock %}</title>
     {% endblock %}
   </head>
-  
   <body>
+  <header>
     <nav>{% block navbar %}
     <div class="nav-content">
         <div class="logo">
@@ -32,7 +32,7 @@
         }
       </script>{% endblock %}
     </nav>
+    </header>
     <div id="content">{% block content %}{% endblock %}</div>
-   
-  </body>
+    </body>
 </html>
