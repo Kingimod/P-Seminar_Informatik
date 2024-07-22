@@ -1,0 +1,7 @@
+.table_div{
+    font-size: 18px;
+}
+.table_div th,
+.table_div td{
+    padding: 4px;
+}
